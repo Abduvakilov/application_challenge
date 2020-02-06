@@ -1,0 +1,26 @@
+version: '3.1'
+
+services:
+  db:
+    image: "mysql:8.0"
+    environment:
+      MYSQL_USERNAME: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+    ports:
+       - "3307:3306"
+  app:
+    depends_on:
+      - "db"
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      DB_USERNAME: root
+      DB_PASSWORD: root
+      DB_NAME: statistics
+      DB_PORT: 3306
+      DB_HOST: db
+      RAILS_ENV: production
+      RAILS_MAX_THREADS: 5
+    volumes:
+      - ".:/app"
