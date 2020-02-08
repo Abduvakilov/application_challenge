@@ -1,0 +1,21 @@
+FROM ruby:2.7
+ENV LANG C.UTF-8
+
+RUN apt-get update && \
+    apt-get install -y build-essential \
+                       --no-install-recommends && \
+    rm -rf /var/lib/apt/lists/*
+
+#Cache bundle install
+WORKDIR /tmp
+ADD ./Gemfile Gemfile
+ADD ./Gemfile.lock Gemfile.lock
+RUN bundle install
+
+ENV APP_ROOT /workspace
+RUN mkdir -p $APP_ROOT
+WORKDIR $APP_ROOT
+COPY . $APP_ROOT
+
+EXPOSE  4567
+CMD ruby $APP_ROOT/web.rb -o '0.0.0.0'
