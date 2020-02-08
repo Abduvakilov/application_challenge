@@ -2,7 +2,7 @@ FROM ruby:2.7
 ENV LANG C.UTF-8
 
 RUN apt-get update && \
-    apt-get install -y default-mysql-client \
+    apt-get install -y default-libmysqlclient-dev \
                        --no-install-recommends && \
     rm -rf /var/lib/apt/lists/*
 
@@ -17,5 +17,7 @@ RUN mkdir -p $APP_ROOT
 WORKDIR $APP_ROOT
 COPY . $APP_ROOT
 
-EXPOSE  3000
-CMD rm -f tmp/pids/server.pid && rails s -b '0.0.0.0'
+ENTRYPOINT [ "./entrypoint.sh" ]
+
+# EXPOSE  3000
+# CMD rm -f tmp/pids/server.pid && rails s -b '0.0.0.0'
