@@ -12,6 +12,6 @@ class Pageview < ApplicationRecord
       'timestamp' => :timestamp
     }
   end
+  
   include FieldMapping
-
 end
