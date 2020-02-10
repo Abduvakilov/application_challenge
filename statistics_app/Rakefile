@@ -1,31 +1,34 @@
+# frozen_string_literal: true
+
 require './db/config.rb'
 
-
 task :environment do
-	# Connect to database:
-	unless ActiveRecord::Base.connected?
-		ActiveRecord::Base.establish_connection(Config.current_db_config)
-	end
+  # Connect to database:
+  Config.establish_db_connection
 end
 
 namespace :db do
-
-  desc "Create the database"
+  desc 'Create the database'
   task :create do
-    ActiveRecord::Tasks::DatabaseTasks.create(Config.current_db_config)
+    begin
+      retries ||= 0
+      ActiveRecord::Tasks::DatabaseTasks.create(Config.current_db_config)
+    rescue Mysql2::Error::ConnectionError
+      sleep(1)
+      retry if (retries += 1) < 4
+    end
   end
 
-  desc "Migrate the database"
+  desc 'Migrate the database'
   task migrate: :environment do
     ActiveRecord::Tasks::DatabaseTasks.migrate
   end
 
-  desc "Drop the database"
+  desc 'Drop the database'
   task drop: :environment do
     ActiveRecord::Tasks::DatabaseTasks.drop(Config.current_db_config)
   end
 
-  desc "Reset the database"
-  task :reset => [:drop, :create, :migrate]
-
+  desc 'Reset the database'
+  task reset: %I[drop create migrate]
 end

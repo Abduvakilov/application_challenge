@@ -1,2 +1,0 @@
-class Pageview < ApplicationRecord
-end

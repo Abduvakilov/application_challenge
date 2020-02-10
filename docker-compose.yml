@@ -12,6 +12,7 @@ services:
   shastic_challenge:
     build:
       context: ./statistics_app
+    env_file: './statistics_app/.env'
     links:
       - mysql
       - fake_api

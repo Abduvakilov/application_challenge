@@ -1,17 +1,14 @@
+# frozen_string_literal: true
+
 require 'active_record'
 require 'pathname'
 
 ActiveSupport::Deprecation.silenced = true
 
 class Config 
-    
   class << self; attr_accessor :db_config, :root end
   @db_config = nil
   @root = Pathname.new(File.expand_path('../..', __FILE__))
-
-  def self.root
-    @root
-  end
 
   def self.environment
     ENV['ENVIRONMENT'] ||= 'production'
@@ -39,4 +36,9 @@ class Config
     current_db_config['database']
   end
 
+  def self.establish_db_connection
+    return if ActiveRecord::Base.connected?
+
+    ActiveRecord::Base.establish_connection(Config.current_db_config)
+  end
 end
