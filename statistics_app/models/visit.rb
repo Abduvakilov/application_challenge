@@ -23,6 +23,8 @@ class Visit < ApplicationRecord
   end
 
   def evid_matches_pattern
+    return if evid.nil?
+
     evid.delete_prefix!('evid_')
     self.evid = nil unless evid.match(evid_pattern)
   end
