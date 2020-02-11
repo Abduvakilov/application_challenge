@@ -1,11 +1,6 @@
 FROM ruby:2.7
 ENV LANG C.UTF-8
 
-# RUN apt-get update && \
-#     apt-get install -y build-essential \
-#                        --no-install-recommends && \
-#     rm -rf /var/lib/apt/lists/*
-
 #Cache bundle install
 WORKDIR /tmp
 ADD ./Gemfile Gemfile

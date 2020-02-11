@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'net/http'
 require 'uri'
 require 'json'
@@ -56,7 +58,9 @@ class App
       next if page_ids_array.include? id
 
       page_ids_array.push(id)
-      new_hash = pageview.select { |key, _| Pageview.source_fields.include? key }
+      new_hash = pageview.select do |key, _|
+        Pageview.source_fields.include? key
+      end
       new_hash[pageview_position_field] = current_position
       current_position += 1
       new_array.push new_hash

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'concerns/field_mapping'
 require_relative 'application_record'
 require_relative 'pageview'
@@ -9,11 +11,11 @@ class Visit < ApplicationRecord
 
   def self.field_mapping
     {
-      'referrerName'  => :evid,
-      'idSite'        => :vendor_site_id,
-      'idVisit'       => :vendor_visit_id,
-      'visitIp'       => :visit_ip,
-      'visitorId'     => :vendor_visitor_id,
+      'referrerName' => :evid,
+      'idSite' => :vendor_site_id,
+      'idVisit' => :vendor_visit_id,
+      'visitIp' => :visit_ip,
+      'visitorId' => :vendor_visitor_id,
       'actionDetails' => :pageviews_attributes
     }
   end

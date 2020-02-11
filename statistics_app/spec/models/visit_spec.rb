@@ -1,4 +1,7 @@
+# frozen_string_literal: true
+
 require_relative '../../models/visit'
+
 describe Visit do
   it 'gets field mapping' do
     expect(Visit.field_mapping).to be_kind_of(Hash)
@@ -13,13 +16,21 @@ describe Visit do
   end
 
   context 'when creating record' do
-    let(:visits) { [
-      { visit_ip: '157.44.95.38', pageviews_attributes: [
-        { title: 'good page'},
-        {time_spent: '2 min'}]},
-      { vendor_site_id: 1789, pageviews_attributes: [
-        { position: 6 }] }
-      ] }
+    let(:visits) {
+      [
+        { visit_ip: '157.44.95.38', pageviews_attributes:
+          [
+            { title: 'good page' },
+            { time_spent: '2 min' }
+          ]
+        },
+        { vendor_site_id: 1789, pageviews_attributes:
+          [
+            { position: 6 }
+          ]
+        }
+      ]
+    }
 
     it 'creates pageview with nested attributes' do
       expect { Visit.create(visits) }
@@ -40,12 +51,20 @@ describe Visit do
   end
 
   it 'matches evid pattern' do
-    visit = Visit.create(evid: 'evid_TEOJeLsw-EmQA-yZH^-[Vri-1acNvlKN5cB7', vendor_site_id: 20484)
-    expect(visit).to have_attributes(evid: 'TEOJeLsw-EmQA-yZH^-[Vri-1acNvlKN5cB7', vendor_site_id: '20484')
+    visit = Visit.create(
+      evid: 'evid_TEOJeLsw-EmQA-yZH^-[Vri-1acNvlKN5cB7',
+      vendor_site_id: 20484
+    )
+    expect(visit).to have_attributes(
+      evid: 'TEOJeLsw-EmQA-yZH^-[Vri-1acNvlKN5cB7',
+      vendor_site_id: '20484'
+    )
   end
 
   it 'removes incorrect evid' do
-    visit = Visit.create(evid: 'evid_TEOJeLswincorrrrect-[Vri-1acNvlKN5cB7', vendor_site_id: 20484)
+    visit = Visit.create(
+      evid: 'evid_TEOJeLswincorrrrect-[Vri-1acNvlKN5cB7', vendor_site_id: 20484
+    )
     expect(visit).to have_attributes(evid: nil, vendor_site_id: '20484')
   end
 end
