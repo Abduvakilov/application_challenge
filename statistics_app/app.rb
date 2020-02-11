@@ -7,16 +7,12 @@ require_relative 'models/visit'
 require_relative 'models/pageview'
 
 class App
-  def self.pageview_sort_field
-    'timestamp'
-  end
-
-  def self.pageview_unique_field
-    'pageId'
-  end
-
-  def self.pageview_position_field
-    'position'
+  def self.pageview_keys
+    {
+      sort: 'timestamp',
+      unique: 'pageId',
+      position: 'position'
+    }
   end
 
   def self.get_statistics_json(uri)
@@ -41,39 +37,39 @@ class App
       next unless Visit.source_fields.include? key
 
       if key == Visit.pageviews_source_key
-        value.sort_by! { |pageview| pageview[pageview_sort_field] }
-        value = filter_pageview_fields(value)
+        value.sort_by! { |pageview| pageview[pageview_keys[:sort]] }
+        value = filter_and_sort_pageviews(value)
       end
       new_hash[key] = value
     end
     new_hash
   end
 
-  def self.filter_pageview_fields(pageviews_array)
+  def self.filter_and_sort_pageviews(pageviews_array)
     new_array = []
     page_ids_array = []
     current_position = 0
     pageviews_array.each do |pageview|
-      id = pageview[pageview_unique_field]
+      id = pageview[pageview_keys[:unique]]
       next if page_ids_array.include? id
 
       page_ids_array.push(id)
       new_hash = pageview.select do |key, _|
         Pageview.source_fields.include? key
       end
-      new_hash[pageview_position_field] = current_position
+      new_hash[pageview_keys[:position]] = current_position
       current_position += 1
       new_array.push new_hash
     end
     new_array
   end
-
-  def self.write_statistics_into_db(uri)
-    json = get_statistics_json(uri)
-    filtered_data = filter_fields(json)
-    Visit.create filtered_data
-  end
 end
 
-res = App.write_statistics_into_db(ENV['API_URI'])
-puts res
+if __FILE__ == $PROGRAM_NAME
+  if data = App.get_statistics_json(ENV['API_URI'])
+    filtered_data = App.filter_fields(data)
+    Visit.create filtered_data
+  else
+    puts "Cannot get statistics data. URI is #{ENV['API_URI']}"
+  end
+end
