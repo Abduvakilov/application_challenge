@@ -1,0 +1,92 @@
+[
+  {
+    "idSite": "209",
+    "idVisit": "134853732",
+    "visitIp": "24.6.5.33",
+    "visitorId": "e280af5191b64f18",
+    "actionDetails": [
+      {
+        "type": "action",
+        "url": "https:\/\/apptest.loanspq.com\/vl\/VehicleLoan.aspx\/vehicle-loan-information?lenderref=Meriwest_test&l=1",
+        "pageTitle": "Vehicle Loan Information",
+        "pageIdAction": "2683026",
+        "serverTimePretty": "Sep 22, 2018 13:45:18",
+        "pageId": "548144655",
+        "generationTime": "0.3s",
+        "timeSpent": "50",
+        "timeSpentPretty": "50s",
+        "icon": null,
+        "timestamp": 1537623918
+      },
+      {
+        "type": "action",
+        "url": "https:\/\/apptest.loanspq.com\/vl\/VehicleLoan.aspx\/vehicle-loan-information?lenderref=Meriwest_test&l=1",
+        "pageTitle": "Vehicle Loan Information",
+        "pageIdAction": "2683026",
+        "serverTimePretty": "Sep 22, 2018 13:39:39",
+        "pageId": "548143378",
+        "generationTime": "0.37s",
+        "timeSpent": "1",
+        "timeSpentPretty": "1s",
+        "icon": null,
+        "timestamp": 1537623579
+      },
+      {
+        "type": "action",
+        "url": "https:\/\/apptest.loanspq.com\/vl\/VehicleLoan.aspx\/vehicle-loan-information?lenderref=Meriwest_test&l=1",
+        "pageTitle": "Vehicle Loan Information",
+        "pageIdAction": "2683026",
+        "serverTimePretty": "Sep 22, 2018 13:39:40",
+        "pageId": "548143381",
+        "generationTime": "0.37s",
+        "timeSpent": "337",
+        "timeSpentPretty": "5 min 37s",
+        "icon": null,
+        "timestamp": 1537623580
+      },
+      {
+        "type": "action",
+        "url": "https:\/\/apptest.loanspq.com\/vl\/VehicleLoan.aspx\/vehicle-loan-information?lenderref=Meriwest_test&l=1",
+        "pageTitle": "Vehicle Loan Information",
+        "pageIdAction": "2683026",
+        "serverTimePretty": "Sep 22, 2018 13:45:17",
+        "pageId": "548144653",
+        "generationTime": "0.3s",
+        "timeSpent": "1",
+        "timeSpentPretty": "1s",
+        "icon": null,
+        "timestamp": 1537623917
+      }
+    ]
+  },
+  {
+    "idSite": "209",
+    "idVisit": "134849628",
+    "visitIp": "24.6.5.33",
+    "visitorId": "e280af5191b64f18",
+    "visitorTypeIcon": "plugins\/Live\/images\/returningVisitor.gif",
+    "visitConverted": "0",
+    "visitConvertedIcon": null,
+    "visitCount": "3",
+    "firstActionTimestamp": 1537648779,
+    "visitEcommerceStatus": "none",
+    "visitEcommerceStatusIcon": null,
+    "daysSinceFirstVisit": "0",
+    "daysSinceLastEcommerceOrder": "0",
+    "actionDetails": [
+      {
+        "type": "action",
+        "url": "https:\/\/apptest.loanspq.com\/vl\/VehicleLoan.aspx\/vehicle-loan-information?lenderref=Meriwest_test&l=1",
+        "pageTitle": "Vehicle Loan Information",
+        "pageIdAction": "2683026",
+        "serverTimePretty": "Sep 22, 2018 12:31:20",
+        "pageId": "548127375",
+        "generationTime": "0.4s",
+        "timeSpent": "368",
+        "timeSpentPretty": "6 min 8s",
+        "icon": null,
+        "timestamp": 1537619480
+      }
+    ]
+  }
+]
